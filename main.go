@@ -13,7 +13,6 @@ import (
     "bufio"
     "time"
     "strconv"
-//     "github.com/fatih/color"
 )
 
 var headers = []string{"Client-IP","Connection","Contact","Forwarded","From","Host","Origin","Referer","True-Client-IP","X-Client-IP","X-Custom-IP-Authorization","X-Forward-For","X-Forwarded-For","X-Forwarded-Host","X-Forwarded-Server","X-Host","X-HTTP-Host-Override","X-Original-URL","X-Originating-IP","X-Real-IP","X-Remote-Addr","X-Remote-IP","X-Rewrite-URL","X-Wap-Profile"}
@@ -24,8 +23,6 @@ var to int
 
 func payloadInject() {
     timeout := time.Duration(to * 1000000)
-//     g := color.New(color.FgGreen)
-//     r := color.New(color.FgRed)
     var tr = &http.Transport{
 		MaxIdleConns:      30,
 		IdleConnTimeout:   time.Second,
@@ -65,10 +62,10 @@ func payloadInject() {
                 continue
             }
             if breq.ContentLength != resp.ContentLength {
-                fmt.Println("[+] "+"["+urlt+"]"+" "+"["+header+": "+scanner.Text()+"]"+" "+"[Code: "+strconv.Itoa(int(resp.StatusCode))+"] "+"[Size: "+ strconv.Itoa(int(resp.ContentLength))+"]")
+                fmt.Println(urlt+"|"+header+"|"+scanner.Text()+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
             }
-// 		else {
-//                 r.Println("[-] "+"["+urlt+"]"+" "+"["+header+": "+scanner.Text()+"]"+" "+"[Code: "+strconv.Itoa(int(resp.StatusCode))+"] "+"[Size: "+ strconv.Itoa(int(resp.ContentLength))+"]")
+//             else {
+//                 fmt.Println(urlt+"|"+header+"|"+scanner.Text()+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
 //             }
             defer resp.Body.Close()
         }
@@ -77,8 +74,6 @@ func payloadInject() {
 
 func headerInject() {
     timeout := time.Duration(to * 1000000)
-//     g := color.New(color.FgGreen)
-//     r := color.New(color.FgRed)
     var tr = &http.Transport{
 		MaxIdleConns:      30,
 		IdleConnTimeout:   time.Second,
@@ -110,10 +105,10 @@ func headerInject() {
                 continue
             }
             if breq.ContentLength != resp.ContentLength {
-                fmt.Println("[+] "+"["+urlt+"]"+" "+"["+header+": "+i+"]"+" "+"[Code: "+strconv.Itoa(int(resp.StatusCode))+"] "+"[Size: "+ strconv.Itoa(int(resp.ContentLength))+"]")
-            } 
-// 		else {
-//                 r.Println("[-] "+"["+urlt+"]"+" "+"["+header+": "+i+"]"+" "+"[Code: "+strconv.Itoa(int(resp.StatusCode))+"] "+"[Size: "+ strconv.Itoa(int(resp.ContentLength))+"]")
+                fmt.Println(urlt+"|"+header+"|"+i+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
+            }
+//             else {
+//                 fmt.Println(urlt+"|"+header+"|"+i+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
 //             }
             defer resp.Body.Close()
         }
