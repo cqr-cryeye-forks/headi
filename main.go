@@ -62,11 +62,10 @@ func payloadInject() {
 				continue
 			}
 			if breq.ContentLength != resp.ContentLength {
+				fmt.Println(urlt + "|" + header + "|" + scanner.Text() + "|" + strconv.Itoa(int(resp.StatusCode)) + "|" + strconv.Itoa(int(resp.ContentLength)) + "|" + "vulnerable")
+			} else {
 				fmt.Println(urlt + "|" + header + "|" + scanner.Text() + "|" + strconv.Itoa(int(resp.StatusCode)) + "|" + strconv.Itoa(int(resp.ContentLength)))
 			}
-			//             else {
-			//                 fmt.Println(urlt+"|"+header+"|"+scanner.Text()+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
-			//             }
 			defer resp.Body.Close()
 		}
 	}
@@ -105,11 +104,10 @@ func headerInject() {
 				continue
 			}
 			if breq.ContentLength != resp.ContentLength {
+				fmt.Println(urlt + "|" + header + "|" + i + "|" + strconv.Itoa(int(resp.StatusCode)) + "|" + strconv.Itoa(int(resp.ContentLength)) + "|" + "vulnerable")
+			} else {
 				fmt.Println(urlt + "|" + header + "|" + i + "|" + strconv.Itoa(int(resp.StatusCode)) + "|" + strconv.Itoa(int(resp.ContentLength)))
 			}
-			//             else {
-			//                 fmt.Println(urlt+"|"+header+"|"+i+"|"+strconv.Itoa(int(resp.StatusCode))+"|"+ strconv.Itoa(int(resp.ContentLength)))
-			//             }
 			defer resp.Body.Close()
 		}
 	}
