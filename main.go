@@ -147,7 +147,6 @@ func main() {
 			fmt.Println("Invalid URL: ", urlt)
 			os.Exit(1)
 		}
-		fmt.Println("Valid URL!!")
 
 		if pfile != "" {
 			payloadInject()
@@ -155,6 +154,4 @@ func main() {
 			headerInject()
 		}
 	}
-	fmt.Println("Valid URL!!")
-
 }
